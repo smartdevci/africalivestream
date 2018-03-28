@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="livestream@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="livestream">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="test"/>
+    <table id="7" parent="2" name="categorie"/>
+    <table id="8" parent="2" name="event"/>
+    <table id="9" parent="2" name="live"/>
+    <table id="10" parent="2" name="replay"/>
+    <table id="11" parent="2" name="t_user"/>
+    <column id="12" parent="7" name="id_categorie">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="13" parent="7" name="categorie_name">
+      <Position>2</Position>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="14" parent="7" name="user_id">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="15" parent="7" name="tag">
+      <ColNames>categorie_name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="16" parent="7" name="user">
+      <ColNames>user_id</ColNames>
+    </index>
+    <key id="17" parent="7" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id_categorie</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="18" parent="7" name="tag">
+      <ColNames>categorie_name</ColNames>
+      <UnderlyingIndexName>tag</UnderlyingIndexName>
+    </key>
+    <foreign-key id="19" parent="7" name="categorie_t_user_id_user_fk">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>livestream</RefSchemaName>
+      <RefTableName>t_user</RefTableName>
+      <RefColNames>id_user</RefColNames>
+    </foreign-key>
+    <column id="20" parent="8" name="id_event">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="21" parent="8" name="tag_name">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="22" parent="8" name="cover_event">
+      <Position>3</Position>
+      <DataType>varchar(150)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="23" parent="8" name="img_server">
+      <Position>4</Position>
+      <DataType>varchar(150)|0</DataType>
+    </column>
+    <column id="24" parent="8" name="date_event">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="25" parent="8" name="titre_event">
+      <Position>6</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="26" parent="8" name="date_post">
+      <Position>7</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="8" name="compte_a_rebours">
+      <Position>8</Position>
+      <DataType>varchar(20)|0</DataType>
+    </column>
+    <index id="28" parent="8" name="event_categorie_id_categorie_fk">
+      <ColNames>tag_name</ColNames>
+    </index>
+    <key id="29" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id_event</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="30" parent="8" name="event_categorie_id_categorie_fk">
+      <ColNames>tag_name</ColNames>
+      <RefSchemaName>livestream</RefSchemaName>
+      <RefTableName>categorie</RefTableName>
+      <RefColNames>id_categorie</RefColNames>
+    </foreign-key>
+    <column id="31" parent="9" name="id_live">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="32" parent="9" name="tag_name">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="33" parent="9" name="live_link">
+      <Position>3</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="9" name="titre_live">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="9" name="cover_live">
+      <Position>5</Position>
+      <DataType>varchar(225)|0</DataType>
+    </column>
+    <column id="36" parent="9" name="img_server">
+      <Position>6</Position>
+      <DataType>varchar(225)|0</DataType>
+    </column>
+    <index id="37" parent="9" name="live_categorie_id_categorie_fk">
+      <ColNames>tag_name</ColNames>
+    </index>
+    <key id="38" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id_live</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="39" parent="9" name="live_categorie_id_categorie_fk">
+      <ColNames>tag_name</ColNames>
+      <RefSchemaName>livestream</RefSchemaName>
+      <RefTableName>categorie</RefTableName>
+      <RefColNames>id_categorie</RefColNames>
+    </foreign-key>
+    <column id="40" parent="10" name="id_replay">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="41" parent="10" name="tag_name">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="10" name="poster">
+      <Position>3</Position>
+      <DataType>varchar(150)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="10" name="titre_video_replay">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="44" parent="10" name="video_link">
+      <Position>5</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="10" name="img_server">
+      <Position>6</Position>
+      <DataType>varchar(225)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="10" name="date_post">
+      <Position>7</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="47" parent="10" name="unique_poster">
+      <ColNames>poster</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="48" parent="10" name="replay_categorie_id_categorie_fk">
+      <ColNames>tag_name</ColNames>
+    </index>
+    <key id="49" parent="10" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id_replay</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="50" parent="10" name="unique_poster">
+      <ColNames>poster</ColNames>
+      <UnderlyingIndexName>unique_poster</UnderlyingIndexName>
+    </key>
+    <foreign-key id="51" parent="10" name="replay_categorie_id_categorie_fk">
+      <ColNames>tag_name</ColNames>
+      <RefSchemaName>livestream</RefSchemaName>
+      <RefTableName>categorie</RefTableName>
+      <RefColNames>id_categorie</RefColNames>
+    </foreign-key>
+    <column id="52" parent="11" name="id_user">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="53" parent="11" name="username">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;Admin&apos;</DefaultExpression>
+    </column>
+    <column id="54" parent="11" name="password_user">
+      <Position>3</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="55" parent="11" name="username">
+      <ColNames>username</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="56" parent="11" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id_user</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="57" parent="11" name="username">
+      <ColNames>username</ColNames>
+      <UnderlyingIndexName>username</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Compte à rebours</title>
+</head>
+<body>
+    <div id="compte_a_rebour"><noscript>Merci d'activer Javascript</noscript></div>
+    <script type="text/javascript">
+
+        function compte_a_rebours() {
+
+            var compte_a_rebour = document.getElementById('compte_a_rebour');
+
+            var date_actuelle = new Date();
+
+            // Date prevue de l'événement
+            var date_event = new Date("Mar 25 20:30:00 2018");
+
+            // Calcul de la différence de temps (en seconde) entre ces 2 dates
+            var total_secondes = (date_event - date_actuelle) / 1000;
+            compte_a_rebour.innerHTML(total_secondes);
+
+            var prefixe = "Compte à rebours terminé dans ";
+            if(total_secondes < 0){
+                prefixe = "Compte à rebours terminé il y a ";   // On modifie le préfix si la différence est strictement négative
+                total_secondes = Math.abs(total_secondes);      // On ne garde que la valeur absolue
+            }
+
+            else if(total_secondes > 0){
+                // Calcul à faire
+
+                // 1 jour = 60 x 60 x 24 secondes
+                var jour = Math.floor(total_secondes / (60 * 60 * 24));
+
+                // 1 heure = 60 x 60 secondes
+                var heure = Math.floor((total_secondes - (60 * 60 * 24)) / (60 * 60));
+
+                // 1 minite = 60 seconde
+                var minute = Math.floor((total_secondes - ((jour * 60 * 60 * 24) + (heure * 60 * 60))) / 60);
+
+                var seconde = Math.floor((total_secondes - ((jour * 60 * 60 * 24) + (heure * 60 * 60) + (minute * 60))));
+
+
+                var et = "et";
+                var mot_jour = 'jours,';
+                var mot_heure = "heures,";
+                var mot_minute = "minutes,";
+                var mot_seconde = "secondes";
+
+
+                if(jour == 0){
+                    mot_jour = '';
+                    jour = "";
+                } else if(jour == 1) {
+                    mot_jour = 'jour,';
+                }
+
+                if (heure == 0){
+                    heure = "";
+                    mot_heure = "";
+                } else if (heure == 1){
+                    mot_heure = "heure,";
+                }
+
+                if(minute == 0){
+                    minute = "";
+                    mot_minute = ""
+                } else if(minute = 1) {
+                    mot_minute = "minute,";
+                }
+
+                if(seconde == 0){
+                    mot_seconde = "";
+                    seconde = "";
+                } else if(seconde == 1){
+                    mot_seconde = "seconde";
+                }
+
+                if(jour == 0 && heure == 0 && minute == 0){
+                    et = "";
+                }
+
+
+                compte_a_rebour.innerHTML(prefixe + jour + ' ' +mot_jour + ' ' + heure + ' ' + mot_heure + ' ' + minute + ' ' + mot_minute + ' ' + et + ' ' + seconde + ' ' + mot_seconde);
+
+
+            }
+
+            else {      // Si total_secondes == 0,
+                compte_a_rebour.innerHTML('Compte à rebours terminé !')
+            }
+
+
+            // Actualisation du compteur à chaque seconde
+            actualisation = setTimeout("compte_a_rebours();", 1000);
+        }
+
+        compte_a_rebours();
+
+
+    </script>
+</body>
+</html>
